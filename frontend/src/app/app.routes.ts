@@ -10,7 +10,8 @@ export const routes: Routes = [
     loadComponent: () => import('./layouts/main-layout/main-layout.component').then(m => m.MainLayoutComponent),
     children: [
       { path: '', loadComponent: () => import('./pages/dashboard/dashboard.component').then(m => m.DashboardComponent) },
-      { path: 'clients', loadComponent: () => import('./pages/clients/clients.component').then(m => m.ClientsComponent) }
+      { path: 'clients', loadComponent: () => import('./pages/clients/clients.component').then(m => m.ClientsComponent) },
+      { path: 'invoices/new', loadComponent: () => import('./pages/new-invoice/new-invoice.component').then(m => m.NewInvoiceComponent) }
     ]
   },
   { path: '**', redirectTo: '' }

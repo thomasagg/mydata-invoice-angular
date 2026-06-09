@@ -2,7 +2,8 @@ namespace backend.Models;
 
 public enum InvoiceStatus
 {
-    Draft,
-    Submitted,
+    Pending,
+    Accepted,
+    Rejected,
     Cancelled
 }

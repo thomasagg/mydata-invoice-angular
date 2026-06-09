@@ -13,6 +13,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<JwtService>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<ClientService>();
+builder.Services.AddHttpClient<MyDataService>();
+builder.Services.AddScoped<InvoiceService>();
 
 var jwtSecret = builder.Configuration["Jwt:Secret"]!;
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

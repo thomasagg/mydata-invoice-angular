@@ -30,6 +30,9 @@ public class AppDbContext : DbContext
             .Property(i => i.TotalGross).HasColumnType("decimal(18,2)");
 
         modelBuilder.Entity<InvoiceLine>()
+            .Property(l => l.Quantity).HasColumnType("decimal(18,2)");
+
+        modelBuilder.Entity<InvoiceLine>()
             .Property(l => l.UnitPrice).HasColumnType("decimal(18,2)");
 
         modelBuilder.Entity<InvoiceLine>()
@@ -37,8 +40,5 @@ public class AppDbContext : DbContext
 
         modelBuilder.Entity<InvoiceLine>()
             .Property(l => l.VatAmount).HasColumnType("decimal(18,2)");
-
-        modelBuilder.Entity<InvoiceLine>()
-            .Property(l => l.VatRate).HasColumnType("decimal(5,2)");
     }
 }
