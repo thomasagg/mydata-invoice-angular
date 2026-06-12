@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { InvoiceService, Invoice } from '../../services/invoice.service';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule, TranslatePipe],
   templateUrl: './dashboard.component.html'
 })
 export class DashboardComponent implements OnInit {
@@ -21,4 +23,10 @@ export class DashboardComponent implements OnInit {
   get accepted() { return this.invoices.filter(i => i.status === 'Accepted').length; }
   get rejected() { return this.invoices.filter(i => i.status === 'Rejected').length; }
   get cancelled() { return this.invoices.filter(i => i.status === 'Cancelled').length; }
+  get revenue() {
+    return this.invoices
+      .filter(i => i.status === 'Accepted')
+      .reduce((sum, i) => sum + (i.totalGross || 0), 0);
+  }
+  get recent() { return this.invoices.slice(0, 5); }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { InvoiceService } from '../../services/invoice.service';
 import { ClientService, Client } from '../../services/client.service';
 
@@ -23,7 +24,7 @@ const emptyLine = () => ({ description: '', quantity: 1, unitPrice: 0, vatCatego
 @Component({
   selector: 'app-new-invoice',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule, TranslatePipe],
   templateUrl: './new-invoice.component.html'
 })
 export class NewInvoiceComponent implements OnInit {

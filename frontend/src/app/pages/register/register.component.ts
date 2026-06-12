@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule, TranslatePipe],
   templateUrl: './register.component.html'
 })
 export class RegisterComponent {
@@ -28,8 +29,8 @@ export class RegisterComponent {
     this.loading = true;
     this.auth.register(this.form).subscribe({
       next: () => this.router.navigate(['/']),
-      error: (err) => {
-        this.error = err.error?.message || 'Registration failed';
+      error: () => {
+        this.error = 'register.error';
         this.loading = false;
       }
     });

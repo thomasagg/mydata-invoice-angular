@@ -1,16 +1,16 @@
-<div class="min-h-screen bg-zinc-100 flex items-center justify-center">
-  <div class="bg-white rounded-xl border border-zinc-200 shadow-sm p-8 w-full max-w-sm">
-    <h1 class="text-xl font-bold text-zinc-900 mb-6">Create account</h1>
+<div class="min-h-screen bg-zinc-100 dark:bg-zinc-950 flex items-center justify-center">
+  <div class="bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-700 shadow-sm p-8 w-full max-w-sm">
+    <h1 class="text-xl font-bold text-zinc-900 dark:text-zinc-100 mb-6">{{ 'register.title' | translate }}</h1>
 
-    <div *ngIf="error" class="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2 mb-4">
-      {{ error }}
+    <div *ngIf="error" class="text-sm text-red-600 bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-800 rounded-lg px-3 py-2 mb-4">
+      {{ error | translate }}
     </div>
 
     <form (ngSubmit)="submit()" #f="ngForm">
       <div class="mb-4">
-        <label class="block text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-1.5">Username</label>
+        <label class="block text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-1.5">{{ 'register.username' | translate }}</label>
         <input
-          class="w-full h-9 border border-zinc-300 rounded-lg px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          class="w-full h-9 border border-zinc-300 dark:border-zinc-600 rounded-lg px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
           [(ngModel)]="form.username"
           name="username"
           required
@@ -18,10 +18,10 @@
       </div>
 
       <div class="mb-4">
-        <label class="block text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-1.5">Password</label>
+        <label class="block text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-1.5">{{ 'register.password' | translate }}</label>
         <input
           type="password"
-          class="w-full h-9 border border-zinc-300 rounded-lg px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          class="w-full h-9 border border-zinc-300 dark:border-zinc-600 rounded-lg px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
           [(ngModel)]="form.password"
           name="password"
           required
@@ -29,10 +29,10 @@
       </div>
 
       <div class="mb-4">
-        <label class="block text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-1.5">Email</label>
+        <label class="block text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-1.5">{{ 'register.email' | translate }}</label>
         <input
           type="email"
-          class="w-full h-9 border border-zinc-300 rounded-lg px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          class="w-full h-9 border border-zinc-300 dark:border-zinc-600 rounded-lg px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
           [(ngModel)]="form.email"
           name="email"
           required
@@ -40,9 +40,9 @@
       </div>
 
       <div class="mb-4">
-        <label class="block text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-1.5">AFM</label>
+        <label class="block text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-1.5">{{ 'register.afm' | translate }}</label>
         <input
-          class="w-full h-9 border border-zinc-300 rounded-lg px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          class="w-full h-9 border border-zinc-300 dark:border-zinc-600 rounded-lg px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
           [(ngModel)]="form.afm"
           name="afm"
           required
@@ -50,9 +50,9 @@
       </div>
 
       <div class="mb-6">
-        <label class="block text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-1.5">Business Name</label>
+        <label class="block text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-1.5">{{ 'register.businessName' | translate }}</label>
         <input
-          class="w-full h-9 border border-zinc-300 rounded-lg px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          class="w-full h-9 border border-zinc-300 dark:border-zinc-600 rounded-lg px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
           [(ngModel)]="form.businessName"
           name="businessName"
         />
@@ -61,15 +61,15 @@
       <button
         type="submit"
         [disabled]="loading"
-        class="w-full h-9 bg-zinc-900 hover:bg-zinc-700 text-white text-sm font-medium rounded-lg transition-colors disabled:opacity-50"
+        class="w-full h-9 bg-zinc-900 hover:bg-zinc-700 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-300 text-white text-sm font-medium rounded-lg transition-colors disabled:opacity-50"
       >
-        {{ loading ? 'Creating account...' : 'Create account' }}
+        {{ loading ? ('register.submitting' | translate) : ('register.submit' | translate) }}
       </button>
     </form>
 
-    <p class="text-sm text-zinc-500 text-center mt-4">
-      Already have an account?
-      <a routerLink="/login" class="text-zinc-900 font-medium hover:underline">Sign in</a>
+    <p class="text-sm text-zinc-500 dark:text-zinc-400 text-center mt-4">
+      {{ 'register.hasAccount' | translate }}
+      <a routerLink="/login" class="text-zinc-900 dark:text-zinc-100 font-medium hover:underline">{{ 'register.login' | translate }}</a>
     </p>
   </div>
 </div>

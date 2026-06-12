@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TranslatePipe } from '@ngx-translate/core';
 import { ClientService, Client } from '../../services/client.service';
 
 const empty: Client = { name: '', afm: '', address: '', city: '', country: 'GR' };
@@ -8,7 +9,7 @@ const empty: Client = { name: '', afm: '', address: '', city: '', country: 'GR' 
 @Component({
   selector: 'app-clients',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TranslatePipe],
   templateUrl: './clients.component.html'
 })
 export class ClientsComponent implements OnInit {
@@ -53,7 +54,7 @@ export class ClientsComponent implements OnInit {
         this.form = { ...empty };
         this.load();
       },
-      error: () => this.error = 'Failed to save client'
+      error: () => this.error = 'clients.error'
     });
   }
 

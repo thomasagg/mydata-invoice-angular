@@ -1,0 +1,20 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({ providedIn: 'root' })
+export class ThemeService {
+  dark = localStorage.getItem('theme') === 'dark';
+
+  constructor() {
+    this.apply();
+  }
+
+  toggle() {
+    this.dark = !this.dark;
+    localStorage.setItem('theme', this.dark ? 'dark' : 'light');
+    this.apply();
+  }
+
+  private apply() {
+    document.documentElement.classList.toggle('dark', this.dark);
+  }
+}
