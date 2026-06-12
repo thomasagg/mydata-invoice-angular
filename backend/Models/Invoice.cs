@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.Text.Json.Serialization;
+
 namespace backend.Models;
 
 public class Invoice
@@ -17,10 +20,13 @@ public class Invoice
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
     public int UserId { get; set; }
+    [ValidateNever, JsonIgnore]
     public User User { get; set; } = null!;
 
     public int ClientId { get; set; }
+    [ValidateNever]
     public Client Client { get; set; } = null!;
 
+    [ValidateNever]
     public ICollection<InvoiceLine> Lines { get; set; } = new List<InvoiceLine>();
 }

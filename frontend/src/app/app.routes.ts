@@ -11,7 +11,8 @@ export const routes: Routes = [
     children: [
       { path: '', loadComponent: () => import('./pages/dashboard/dashboard.component').then(m => m.DashboardComponent) },
       { path: 'clients', loadComponent: () => import('./pages/clients/clients.component').then(m => m.ClientsComponent) },
-      { path: 'invoices/new', loadComponent: () => import('./pages/new-invoice/new-invoice.component').then(m => m.NewInvoiceComponent) }
+      { path: 'invoices/new', loadComponent: () => import('./pages/new-invoice/new-invoice.component').then(m => m.NewInvoiceComponent) },
+      { path: 'invoices', loadComponent: () => import('./pages/invoices/invoices.component').then(m => m.InvoicesComponent) }
     ]
   },
   { path: '**', redirectTo: '' }

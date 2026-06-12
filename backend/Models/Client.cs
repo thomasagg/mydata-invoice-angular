@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.Text.Json.Serialization;
+
 namespace backend.Models;
 
 public class Client
@@ -10,6 +13,8 @@ public class Client
     public string Country { get; set; } = "GR";
 
     public int UserId { get; set; }
+    [ValidateNever, JsonIgnore]
     public User User { get; set; } = null!;
+    [ValidateNever, JsonIgnore]
     public ICollection<Invoice> Invoices { get; set; } = new List<Invoice>();
 }

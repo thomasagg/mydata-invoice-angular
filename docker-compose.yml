@@ -1,0 +1,32 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: invoicedb_angular
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    ports:
+      - "5225:5225"
+    environment:
+      ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Database=invoicedb_angular;Username=postgres;Password=postgres"
+      Jwt__Secret: "change-this-to-a-long-random-secret-key-in-production"
+      ASPNETCORE_URLS: "http://+:5225"
+    depends_on:
+      - postgres
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:

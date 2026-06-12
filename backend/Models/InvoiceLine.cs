@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.Text.Json.Serialization;
+
 namespace backend.Models;
 
 public class InvoiceLine
@@ -12,5 +15,6 @@ public class InvoiceLine
     public decimal VatAmount { get; set; }
 
     public int InvoiceId { get; set; }
+    [ValidateNever, JsonIgnore]
     public Invoice Invoice { get; set; } = null!;
 }

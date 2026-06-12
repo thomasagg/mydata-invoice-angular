@@ -1,0 +1,55 @@
+<div class="p-8">
+  <div class="flex items-center justify-between mb-6">
+    <h1 class="text-xl font-bold text-zinc-900">Invoices</h1>
+    <a
+      routerLink="/invoices/new"
+      class="h-8 px-4 bg-zinc-900 hover:bg-zinc-700 text-white text-sm font-medium rounded-lg transition-colors flex items-center"
+    >
+      + New Invoice
+    </a>
+  </div>
+
+  <div class="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
+    <div *ngIf="invoices.length === 0" class="flex items-center justify-center py-16 text-sm text-zinc-400">
+      No invoices yet.
+    </div>
+
+    <table *ngIf="invoices.length > 0" class="w-full text-sm">
+      <thead>
+        <tr class="border-b border-zinc-100">
+          <th class="text-left px-5 py-3 text-xs font-semibold text-zinc-400 uppercase tracking-wider">Date</th>
+          <th class="text-left px-5 py-3 text-xs font-semibold text-zinc-400 uppercase tracking-wider">Number</th>
+          <th class="text-left px-5 py-3 text-xs font-semibold text-zinc-400 uppercase tracking-wider">Client</th>
+          <th class="text-left px-5 py-3 text-xs font-semibold text-zinc-400 uppercase tracking-wider">Total</th>
+          <th class="text-left px-5 py-3 text-xs font-semibold text-zinc-400 uppercase tracking-wider">Status</th>
+          <th class="px-5 py-3"></th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-zinc-50">
+        <tr *ngFor="let inv of invoices" class="hover:bg-zinc-50 transition-colors">
+          <td class="px-5 py-3.5 text-zinc-500">{{ inv.issueDate }}</td>
+          <td class="px-5 py-3.5 font-mono text-zinc-800">{{ inv.series }}-{{ inv.aa }}</td>
+          <td class="px-5 py-3.5 text-zinc-800">{{ inv.client?.name }}</td>
+          <td class="px-5 py-3.5 text-zinc-800">€{{ inv.totalGross?.toFixed(2) }}</td>
+          <td class="px-5 py-3.5">
+            <span [class]="'inline-block px-2 py-0.5 rounded text-xs font-medium ' + statusClass(inv.status)">
+              {{ inv.status }}
+            </span>
+          </td>
+          <td class="px-5 py-3.5">
+            <div class="flex gap-3 justify-end">
+              <button *ngIf="inv.status === 'Accepted'" (click)="cancel(inv.id!)"
+                class="text-xs font-medium text-zinc-400 hover:text-red-500 transition-colors">
+                Cancel
+              </button>
+              <button *ngIf="inv.status === 'Rejected'" (click)="resubmit(inv.id!)"
+                class="text-xs font-medium text-zinc-400 hover:text-blue-600 transition-colors">
+                Resubmit
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
